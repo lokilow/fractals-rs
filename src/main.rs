@@ -24,15 +24,9 @@ fn escape_time(c: Complex<f64>, limit: usize) -> Option<usize> {
 /// `pixel` is a (column, row) pair indicating a particular pixel in that image
 /// The `upper_left` and `lower_right` parameters are points on the complex plane designating the area our image covers
 fn pixel_to_point(
-    bounds: (usize, usize),
-    pixel: (usize, usize),
-    upper_left: Complex<f64>,
-    lower_right: Complex<f64>,
+    bounds: (usize, usize), pixel: (usize, usize), upper_left: Complex<f64>, lower_right: Complex<f64>,
 ) -> Complex<f64> {
-    let (width, height) = (
-        lower_right.re - upper_left.re,
-        upper_left.im - lower_right.im,
-    );
+    let (width, height) = (lower_right.re - upper_left.re, upper_left.im - lower_right.im);
 
     Complex {
         re: upper_left.re + pixel.0 as f64 * width / bounds.0 as f64,
@@ -49,10 +43,7 @@ fn test_pixel_to_point() {
             Complex { re: -1.0, im: 1.0 },
             Complex { re: 1.0, im: -1.0 }
         ),
-        Complex {
-            re: -0.5,
-            im: -0.75
-        }
+        Complex { re: -0.5, im: -0.75 }
     )
 }
 
@@ -65,10 +56,7 @@ fn parse_complex(s: &str) -> Option<Complex<f64>> {
 
 #[test]
 fn test_parse_complex() {
-    assert_eq!(
-        parse_complex("-1.2,0.1"),
-        Some(Complex { re: -1.2, im: 0.1 })
-    );
+    assert_eq!(parse_complex("-1.2,0.1"), Some(Complex { re: -1.2, im: 0.1 }));
     assert_eq!(parse_complex("-1.234,dklfjd"), None);
 }
 
