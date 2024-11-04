@@ -11,7 +11,7 @@ fn main() {
 
     if args.len() != 5 {
         eprintln!("Usage: {} FILE PIXELS UPPERLEFT LOWERRIGHT", args[0]);
-        eprintln!("Example: {} mandel.png, 1000x750, -1.20,0.35 -1,0.20", args[0]);
+        eprintln!("Example: {} mandel.png 1000x750 -1.20,0.35 -1,0.20", args[0]);
         std::process::exit(1);
     }
     let bounds = parse_pair(&args[2], 'x').expect("error parsing image dimensions");
